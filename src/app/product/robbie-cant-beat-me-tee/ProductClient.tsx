@@ -17,28 +17,28 @@ const JOKE_REVIEWS = [
     author: "BirdieMachine_88",
     rating: 5,
     text: "Wore this on the first tee. Robbie took one look at it and three-putted every hole. Shirt works as advertised.",
-    date: "March 2025",
+    date: "March 2026",
     label: "Fan Review",
   },
   {
     author: "FairwayPhilosopher",
     rating: 5,
     text: "I had a 22 handicap before this shirt. Now I'm a 21. Coincidence? Robbie doesn't think so.",
-    date: "February 2025",
+    date: "February 2026",
     label: "Fan Review",
   },
   {
     author: "Back9Believer",
     rating: 5,
     text: "Robbie saw me warming up on the range wearing this and suddenly remembered he had 'other plans.' Classic.",
-    date: "April 2025",
+    date: "April 2026",
     label: "Fan Review",
   },
   {
     author: "BunkerBetter_OG",
     rating: 5,
     text: "Hit my first eagle wearing this shirt. My caddy said it was skill. My caddy is wrong — it's the shirt.",
-    date: "January 2025",
+    date: "January 2026",
     label: "Fan Review",
   },
 ];
@@ -288,23 +288,10 @@ export default function ProductClient({ product }: Props) {
                 </summary>
                 <div className="text-zinc-400 text-sm space-y-2 pt-3 pb-2">
                   <p>• Ships within 3–5 business days</p>
-                  <p>• Free shipping on orders over $75</p>
-                  <p>• Tracking provided via email</p>
                   <p>• Fulfilled and shipped through Shopify</p>
                 </div>
               </details>
 
-              <details className="group">
-                <summary className="flex items-center justify-between cursor-pointer text-white text-sm font-semibold tracking-widest uppercase py-2">
-                  Returns
-                  <span className="text-zinc-500 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
-                </summary>
-                <div className="text-zinc-400 text-sm space-y-2 pt-3 pb-2">
-                  <p>• 30-day return window for unworn items</p>
-                  <p>• Free exchanges on sizing issues</p>
-                  <p>• Contact us and we&apos;ll make it right</p>
-                </div>
-              </details>
             </div>
           </motion.div>
         </div>

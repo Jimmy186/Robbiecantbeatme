@@ -27,16 +27,37 @@ export default function EnterPage() {
           {/* Solid black background */}
           <div className="absolute inset-0 bg-black" />
 
-          {/* Hero background image — fills vertical on mobile, contained on desktop */}
+          {/* Mobile: cover (full screen) */}
           <motion.div
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 2, ease: "easeOut" }}
-            className="absolute inset-0 bg-center bg-no-repeat"
+            className="absolute inset-0 bg-center bg-no-repeat sm:hidden"
+            style={{
+              backgroundImage: "url('/hero-bg.png')",
+              backgroundSize: "cover",
+            }}
+          />
+
+          {/* Desktop: blurred color fill behind contained image */}
+          <div
+            className="absolute inset-0 hidden sm:block"
             style={{
               backgroundImage: "url('/hero-bg.png')",
               backgroundSize: "cover",
               backgroundPosition: "center center",
+              filter: "blur(40px) brightness(0.4) saturate(1.4)",
+              transform: "scale(1.1)",
+            }}
+          />
+          <motion.div
+            initial={{ opacity: 0, scale: 1.02 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            className="absolute inset-0 bg-center bg-no-repeat hidden sm:block"
+            style={{
+              backgroundImage: "url('/hero-bg.png')",
+              backgroundSize: "contain",
             }}
           />
 
