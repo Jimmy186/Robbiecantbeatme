@@ -18,6 +18,10 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "ROBBIE CAN'T BEAT ME",
   description: "Limited drop. Own the proof.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
+  },
   openGraph: {
     title: "ROBBIE CAN'T BEAT ME",
     description: "Limited drop. Own the proof.",
