@@ -1,65 +1,147 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
+
+export default function EnterPage() {
+  const router = useRouter();
+  const [leaving, setLeaving] = useState(false);
+
+  const handleEnter = () => {
+    setLeaving(true);
+    setTimeout(() => router.push("/shop"), 800);
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <AnimatePresence>
+      {!leaving ? (
+        <motion.main
+          key="enter"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0, scale: 1.04 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden"
+        >
+          {/* Hero background image */}
+          <motion.div
+            initial={{ opacity: 0, scale: 1.06 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, ease: "easeOut" }}
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/hero-bg.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center top",
+            }}
+          />
+
+          {/* Dark overlay so text stays readable */}
+          <div className="absolute inset-0 bg-black/60" />
+
+          {/* Bottom gradient fade to black */}
+          <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent" />
+
+          {/* Animated scanlines */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.025]"
+            style={{
+              backgroundImage:
+                "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.1) 2px, rgba(255,255,255,0.1) 4px)",
+            }}
+          />
+
+          <div className="relative z-10 flex flex-col items-center gap-12 px-6 text-center">
+            {/* Title */}
+            <motion.div
+              initial={{ opacity: 0, y: 24 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
+              className="space-y-2"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
+              <p className="text-zinc-500 text-xs tracking-[0.4em] uppercase font-mono">
+                Limited Drop
+              </p>
+              <h1 className="text-white font-black tracking-tight leading-none"
+                style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)" }}
+              >
+                ROBBIE CAN&apos;T
+                <br />
+                BEAT ME
+              </h1>
+              <p className="text-zinc-500 text-sm tracking-[0.2em] uppercase">
+                Wear the truth.
+              </p>
+            </motion.div>
+
+            {/* Decorative line */}
+            <motion.div
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.8, duration: 0.6, ease: "easeOut" }}
+              className="w-24 h-px bg-white/20"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+
+            {/* Enter button */}
+            <motion.button
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.6 }}
+              onClick={handleEnter}
+              className="group relative px-12 py-4 border border-white/20 text-white text-sm tracking-[0.4em] uppercase font-semibold
+                         hover:border-white/60 transition-all duration-300 overflow-hidden"
+            >
+              {/* Hover glow fill */}
+              <span
+                className="absolute inset-0 bg-white translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out"
+              />
+              <span className="relative z-10 group-hover:text-black transition-colors duration-300">
+                Enter
+              </span>
+            </motion.button>
+
+            {/* Subtitle hint */}
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.4, duration: 0.8 }}
+              className="text-zinc-600 text-xs tracking-widest uppercase"
+            >
+              One shirt. One statement.
+            </motion.p>
+          </div>
+
+          {/* Corner marks */}
+          {[
+            "top-6 left-6",
+            "top-6 right-6",
+            "bottom-6 left-6",
+            "bottom-6 right-6",
+          ].map((pos, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 + i * 0.1 }}
+              className={`absolute ${pos} w-4 h-4 border-white/20 hidden sm:block`}
+              style={{
+                borderTop: pos.includes("top") ? "1px solid" : "none",
+                borderBottom: pos.includes("bottom") ? "1px solid" : "none",
+                borderLeft: pos.includes("left") ? "1px solid" : "none",
+                borderRight: pos.includes("right") ? "1px solid" : "none",
+              }}
+            />
+          ))}
+        </motion.main>
+      ) : (
+        <motion.div
+          key="transition"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="fixed inset-0 bg-black z-50"
+        />
+      )}
+    </AnimatePresence>
   );
 }
