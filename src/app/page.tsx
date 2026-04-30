@@ -35,7 +35,7 @@ export default function EnterPage() {
             className="absolute inset-0 bg-center bg-no-repeat"
             style={{
               backgroundImage: "url('/hero-bg.png')",
-              backgroundSize: "clamp(320px, 100vw, 90vh)",
+              backgroundSize: "cover",
               backgroundPosition: "center center",
             }}
           />
