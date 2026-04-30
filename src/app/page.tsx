@@ -26,19 +26,20 @@ export default function EnterPage() {
         >
           {/* Hero background image */}
           <motion.div
-            initial={{ opacity: 0, scale: 1.06 }}
+            initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 2, ease: "easeOut" }}
             className="absolute inset-0"
             style={{
               backgroundImage: "url('/hero-bg.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center top",
+              backgroundSize: "contain",
+              backgroundPosition: "center center",
+              backgroundRepeat: "no-repeat",
             }}
           />
 
           {/* Dark overlay so text stays readable */}
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-black/50" />
 
           {/* Bottom gradient fade to black */}
           <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black to-transparent" />
@@ -60,17 +61,21 @@ export default function EnterPage() {
               transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
               className="space-y-2"
             >
-              <p className="text-zinc-500 text-xs tracking-[0.4em] uppercase font-mono">
+              <p className="text-zinc-400 text-sm tracking-[0.4em] uppercase font-mono font-bold"
+                style={{ textShadow: "0 1px 8px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,1)" }}
+              >
                 Limited Drop
               </p>
               <h1 className="text-white font-black tracking-tight leading-none"
-                style={{ fontSize: "clamp(2.5rem, 8vw, 7rem)" }}
+                style={{ fontSize: "clamp(2rem, 5vw, 4rem)", textShadow: "0 4px 32px rgba(0,0,0,0.9)" }}
               >
                 ROBBIE CAN&apos;T
                 <br />
                 BEAT ME
               </h1>
-              <p className="text-zinc-500 text-sm tracking-[0.2em] uppercase">
+              <p className="text-zinc-400 text-base tracking-[0.3em] uppercase font-semibold"
+                style={{ textShadow: "0 1px 8px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,1)" }}
+              >
                 Wear the truth.
               </p>
             </motion.div>
@@ -106,7 +111,8 @@ export default function EnterPage() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1.4, duration: 0.8 }}
-              className="text-zinc-600 text-xs tracking-widest uppercase"
+              className="text-zinc-400 text-sm tracking-widest uppercase font-semibold"
+            style={{ textShadow: "0 1px 8px rgba(0,0,0,0.9), 0 0 2px rgba(0,0,0,1)" }}
             >
               One shirt. One statement.
             </motion.p>
