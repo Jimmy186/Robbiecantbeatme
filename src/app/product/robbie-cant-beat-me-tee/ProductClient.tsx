@@ -273,9 +273,9 @@ export default function ProductClient({ product }: Props) {
                   <span className="text-zinc-500 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
                 </summary>
                 <div className="text-zinc-400 text-sm space-y-2 pt-3 pb-2">
-                  <p>• 100% ringspun cotton, 6.1 oz/yd²</p>
-                  <p>• Pre-shrunk for true-to-size fit</p>
-                  <p>• Double-needle stitched hems</p>
+                  <p>• 100% cotton</p>
+                  <p>• Pre-shrunk for a perfect fit</p>
+                  <p>• Comfortable everyday wear</p>
                   <p>• Screen printed graphics — built to last</p>
                   <p>• Unisex sizing</p>
                 </div>
