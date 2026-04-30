@@ -29,8 +29,8 @@ export default function EnterPage() {
             <span className="text-white font-black text-sm tracking-[0.3em] uppercase">RCBM</span>
           </nav>
 
-          {/* Image + content area */}
-          <div className="relative flex-1 flex items-center justify-center overflow-hidden">
+          {/* Image + content area — fills remaining screen below header */}
+          <div className="relative w-full h-[calc(100vh-57px)] flex items-center justify-center overflow-hidden">
 
             {/* Solid black background */}
             <div className="absolute inset-0 bg-black" />
