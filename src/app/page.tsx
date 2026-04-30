@@ -24,17 +24,8 @@ export default function EnterPage() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden"
         >
-          {/* Blurred background fill for wide screens */}
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: "url('/hero-bg.png')",
-              backgroundSize: "cover",
-              backgroundPosition: "center center",
-              filter: "blur(40px) brightness(0.4) saturate(1.4)",
-              transform: "scale(1.1)",
-            }}
-          />
+          {/* Solid black background */}
+          <div className="absolute inset-0 bg-black" />
 
           {/* Hero background image — fills vertical on mobile, contained on desktop */}
           <motion.div
