@@ -10,9 +10,6 @@ export default function Footer() {
             <p className="text-white font-black text-lg tracking-[0.2em] uppercase">
               ROBBIE CAN&apos;T BEAT ME
             </p>
-            <p className="text-zinc-600 text-xs tracking-widest uppercase mt-1">
-              Bunker Betters™
-            </p>
           </div>
 
           {/* Links */}
@@ -31,8 +28,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-10 pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-3 text-zinc-700 text-xs">
-          <p>© {new Date().getFullYear()} Robbie Can&apos;t Beat Me. All rights reserved.</p>
-          <p>Powered by Shopify</p>
+          <p>Robbie Can&apos;t Beat Me 2026</p>
         </div>
       </div>
     </footer>
