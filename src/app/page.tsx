@@ -24,7 +24,19 @@ export default function EnterPage() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden"
         >
-          {/* Hero background image */}
+          {/* Blurred background fill for wide screens */}
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: "url('/hero-bg.png')",
+              backgroundSize: "cover",
+              backgroundPosition: "center center",
+              filter: "blur(40px) brightness(0.4) saturate(1.4)",
+              transform: "scale(1.1)",
+            }}
+          />
+
+          {/* Hero background image — crisp and contained */}
           <motion.div
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
