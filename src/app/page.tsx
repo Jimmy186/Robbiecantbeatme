@@ -25,9 +25,10 @@ export default function EnterPage() {
           className="relative min-h-screen bg-black flex items-center justify-center overflow-hidden"
         >
           {/* Header */}
-          <div className="fixed top-0 left-0 right-0 z-30 flex items-center justify-center px-6 py-4 bg-black/80 backdrop-blur-md border-b border-white/[0.06]">
+          <div className="absolute top-0 left-0 right-0 z-30 flex items-center justify-center px-6 py-4 bg-black/80 backdrop-blur-md border-b border-white/[0.06]">
             <span className="text-white font-black text-sm tracking-[0.3em] uppercase">RCBM</span>
           </div>
+
           {/* Solid black background */}
           <div className="absolute inset-0 bg-black" />
 
