@@ -36,17 +36,16 @@ export default function EnterPage() {
             }}
           />
 
-          {/* Hero background image — crisp and contained */}
+          {/* Hero background image — fills vertical on mobile, contained on desktop */}
           <motion.div
             initial={{ opacity: 0, scale: 1.02 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 2, ease: "easeOut" }}
-            className="absolute inset-0"
+            className="absolute inset-0 bg-center bg-no-repeat"
             style={{
               backgroundImage: "url('/hero-bg.png')",
-              backgroundSize: "contain",
+              backgroundSize: "clamp(320px, 100vw, 90vh)",
               backgroundPosition: "center center",
-              backgroundRepeat: "no-repeat",
             }}
           />
 
