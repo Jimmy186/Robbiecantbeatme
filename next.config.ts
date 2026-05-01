@@ -13,12 +13,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async redirects() {
+  async rewrites() {
     return [
       {
         source: "/cart/:path*",
         destination: "https://x7x1ww-y8.myshopify.com/cart/:path*",
-        permanent: false,
       },
     ];
   },
