@@ -90,7 +90,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const checkout = () => {
     if (cart?.checkoutUrl) {
-      window.location.href = cart.checkoutUrl;
+      // Force checkout to go directly to the myshopify domain to avoid
+      // redirect loops caused by robbiecantbeatme.com being set as a
+      // custom domain in Shopify admin.
+      const url = cart.checkoutUrl.replace(
+        "robbiecantbeatme.com",
+        "x7x1ww-y8.myshopify.com"
+      );
+      window.location.href = url;
     }
   };
 
