@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import CartIcon from "@/components/CartIcon";
 import { ShopifyProduct, formatPrice } from "@/lib/shopify";
 import { useCart } from "@/context/CartContext";
+import { SOLD_OUT } from "@/lib/config";
 
 interface Props {
   products: ShopifyProduct[];
@@ -126,7 +127,18 @@ export default function ShopClient({ products }: Props) {
               </div>
 
               {/* Size selector */}
-              {sizes.length > 0 && (
+              {SOLD_OUT ? (
+                <div className="space-y-2">
+                  <p className="text-zinc-500 text-xs tracking-widest uppercase">Size</p>
+                  <div className="flex flex-wrap gap-2">
+                    {["S", "M", "L", "XL"].map((size) => (
+                      <div key={size} className="px-3 py-1.5 text-xs font-semibold rounded-lg border border-white/10 text-zinc-600 line-through cursor-not-allowed">
+                        {size}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : sizes.length > 0 && (
                 <div className="space-y-2">
                   <p className="text-zinc-500 text-xs tracking-widest uppercase">Size</p>
                   <div className="flex flex-wrap gap-2">
@@ -152,19 +164,25 @@ export default function ShopClient({ products }: Props) {
 
               {/* Buttons */}
               <div className="flex gap-2">
-                <button
-                  onClick={handleAddToCart}
-                  disabled={loading || (!selectedVariant && !isPlaceholder) || addedFeedback}
-                  className={`flex-1 py-3 text-sm font-bold tracking-widest uppercase rounded-xl transition-all duration-300 ${
-                    addedFeedback
-                      ? "bg-green-500 text-white"
-                      : selectedVariant || isPlaceholder
-                      ? "bg-white text-black hover:bg-zinc-200"
-                      : "bg-white/10 text-zinc-500 cursor-not-allowed"
-                  }`}
-                >
-                  {addedFeedback ? "Added ✓" : loading ? "Adding…" : "Add to Cart"}
-                </button>
+                {SOLD_OUT ? (
+                  <div className="flex-1 py-3 text-sm font-black tracking-widest uppercase rounded-xl bg-white/5 border border-white/10 text-zinc-500 text-center cursor-not-allowed">
+                    SOLD OUT
+                  </div>
+                ) : (
+                  <button
+                    onClick={handleAddToCart}
+                    disabled={loading || (!selectedVariant && !isPlaceholder) || addedFeedback}
+                    className={`flex-1 py-3 text-sm font-bold tracking-widest uppercase rounded-xl transition-all duration-300 ${
+                      addedFeedback
+                        ? "bg-green-500 text-white"
+                        : selectedVariant || isPlaceholder
+                        ? "bg-white text-black hover:bg-zinc-200"
+                        : "bg-white/10 text-zinc-500 cursor-not-allowed"
+                    }`}
+                  >
+                    {addedFeedback ? "Added ✓" : loading ? "Adding…" : "Add to Cart"}
+                  </button>
+                )}
                 <Link
                   href={`/product/${product.handle}`}
                   className="px-4 py-3 text-sm font-bold tracking-wider border border-white/20 rounded-xl text-white hover:border-white/50 transition-all duration-200 whitespace-nowrap"

@@ -6,6 +6,7 @@ import Link from "next/link";
 import { Minus, Plus, Star } from "lucide-react";
 import { ShopifyProduct, ShopifyProductVariant, formatPrice } from "@/lib/shopify";
 import { useCart } from "@/context/CartContext";
+import { SOLD_OUT } from "@/lib/config";
 import CartIcon from "@/components/CartIcon";
 
 interface Props {
@@ -179,7 +180,19 @@ export default function ProductClient({ product }: Props) {
             </div>
 
             {/* Size selector */}
-            {sizes.length > 0 && (
+            {SOLD_OUT ? (
+              <div className="space-y-3">
+                <p className="text-white text-sm font-semibold tracking-widest uppercase">Size</p>
+                <div className="flex flex-wrap gap-2">
+                  {["S", "M", "L", "XL"].map((size) => (
+                    <div key={size} className="relative px-5 py-2.5 text-sm font-semibold rounded-xl border border-white/10 text-zinc-600 line-through cursor-not-allowed">
+                      {size}
+                    </div>
+                  ))}
+                </div>
+                <p className="text-red-400 text-xs font-semibold tracking-widest uppercase">All sizes sold out</p>
+              </div>
+            ) : sizes.length > 0 && (
               <div className="space-y-3">
                 <div className="flex items-center justify-between">
                   <p className="text-white text-sm font-semibold tracking-widest uppercase">Size</p>
@@ -218,51 +231,61 @@ export default function ProductClient({ product }: Props) {
             )}
 
             {/* Quantity */}
-            <div className="space-y-3">
-              <p className="text-white text-sm font-semibold tracking-widest uppercase">Quantity</p>
-              <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-1 w-fit">
-                <button
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors rounded-lg hover:bg-white/10"
-                >
-                  <Minus className="w-4 h-4" />
-                </button>
-                <span className="text-white font-bold text-lg w-8 text-center">{quantity}</span>
-                <button
-                  onClick={() => setQuantity(quantity + 1)}
-                  className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors rounded-lg hover:bg-white/10"
-                >
-                  <Plus className="w-4 h-4" />
-                </button>
+            {!SOLD_OUT && (
+              <div className="space-y-3">
+                <p className="text-white text-sm font-semibold tracking-widest uppercase">Quantity</p>
+                <div className="flex items-center gap-4 bg-white/5 border border-white/10 rounded-xl p-1 w-fit">
+                  <button
+                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                    className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors rounded-lg hover:bg-white/10"
+                  >
+                    <Minus className="w-4 h-4" />
+                  </button>
+                  <span className="text-white font-bold text-lg w-8 text-center">{quantity}</span>
+                  <button
+                    onClick={() => setQuantity(quantity + 1)}
+                    className="w-10 h-10 flex items-center justify-center text-zinc-400 hover:text-white transition-colors rounded-lg hover:bg-white/10"
+                  >
+                    <Plus className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* CTA buttons */}
             <div className="space-y-3">
-              <button
-                onClick={handleAddToCart}
-                disabled={loading || (!selectedVariant && !isPlaceholder) || addedFeedback}
-                className={`w-full py-4 rounded-xl font-bold text-sm tracking-widest uppercase transition-all duration-300 ${
-                  addedFeedback
-                    ? "bg-green-500 text-white"
-                    : selectedVariant || isPlaceholder
-                    ? "bg-white text-black hover:bg-zinc-200"
-                    : "bg-white/10 text-zinc-500 cursor-not-allowed"
-                }`}
-              >
-                {addedFeedback ? "Added to Cart ✓" : loading ? "Adding…" : "Add to Cart"}
-              </button>
-              <button
-                onClick={handleCheckout}
-                disabled={loading || (!selectedVariant && !isPlaceholder)}
-                className={`w-full py-4 rounded-xl font-bold text-sm tracking-widest uppercase border transition-all duration-300 ${
-                  selectedVariant || isPlaceholder
-                    ? "border-white/40 text-white hover:bg-white hover:text-black"
-                    : "border-white/10 text-zinc-600 cursor-not-allowed"
-                }`}
-              >
-                {loading ? "Processing…" : "Buy Now →"}
-              </button>
+              {SOLD_OUT ? (
+                <div className="w-full py-5 rounded-xl font-black text-lg tracking-widest uppercase text-center bg-white/5 border border-white/10 text-zinc-400 cursor-not-allowed">
+                  SOLD OUT
+                </div>
+              ) : (
+                <>
+                  <button
+                    onClick={handleAddToCart}
+                    disabled={loading || (!selectedVariant && !isPlaceholder) || addedFeedback}
+                    className={`w-full py-4 rounded-xl font-bold text-sm tracking-widest uppercase transition-all duration-300 ${
+                      addedFeedback
+                        ? "bg-green-500 text-white"
+                        : selectedVariant || isPlaceholder
+                        ? "bg-white text-black hover:bg-zinc-200"
+                        : "bg-white/10 text-zinc-500 cursor-not-allowed"
+                    }`}
+                  >
+                    {addedFeedback ? "Added to Cart ✓" : loading ? "Adding…" : "Add to Cart"}
+                  </button>
+                  <button
+                    onClick={handleCheckout}
+                    disabled={loading || (!selectedVariant && !isPlaceholder)}
+                    className={`w-full py-4 rounded-xl font-bold text-sm tracking-widest uppercase border transition-all duration-300 ${
+                      selectedVariant || isPlaceholder
+                        ? "border-white/40 text-white hover:bg-white hover:text-black"
+                        : "border-white/10 text-zinc-600 cursor-not-allowed"
+                    }`}
+                  >
+                    {loading ? "Processing…" : "Buy Now →"}
+                  </button>
+                </>
+              )}
             </div>
 
             {/* Details */}
