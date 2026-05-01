@@ -13,19 +13,22 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  async rewrites() {
+  async redirects() {
     return [
       {
-        source: "/cart/:path*",
-        destination: "https://x7x1ww-y8.myshopify.com/cart/:path*",
+        source: "/cart/c/:path*",
+        destination: "https://x7x1ww-y8.myshopify.com/cart/c/:path*",
+        permanent: false,
       },
       {
         source: "/checkouts/:path*",
         destination: "https://x7x1ww-y8.myshopify.com/checkouts/:path*",
+        permanent: false,
       },
       {
         source: "/a/pay",
         destination: "https://x7x1ww-y8.myshopify.com/a/pay",
+        permanent: false,
       },
     ];
   },
