@@ -90,7 +90,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const checkout = () => {
     if (cart?.checkoutUrl) {
-      window.location.href = cart.checkoutUrl;
+      // Shopify returns checkoutUrl using the store's custom domain, which points
+      // to this Next.js app — rewrite it to the myshopify.com domain so Shopify
+      // handles the checkout page instead of Next.js routing it as a 404.
+      const url = cart.checkoutUrl.replace(
+        /^https?:\/\/(www\.)?robbiecantbeatme\.com/,
+        "https://x7x1ww-y8.myshopify.com"
+      );
+      window.location.href = url;
     }
   };
 
