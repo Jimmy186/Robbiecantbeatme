@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
         source: "/cart/:path*",
         destination: "https://x7x1ww-y8.myshopify.com/cart/:path*",
       },
+      {
+        source: "/checkouts/:path*",
+        destination: "https://x7x1ww-y8.myshopify.com/checkouts/:path*",
+      },
+      {
+        source: "/a/pay",
+        destination: "https://x7x1ww-y8.myshopify.com/a/pay",
+      },
     ];
   },
 };
