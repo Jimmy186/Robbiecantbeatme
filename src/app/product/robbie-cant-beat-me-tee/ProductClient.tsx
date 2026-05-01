@@ -91,8 +91,12 @@ export default function ProductClient({ product }: Props) {
 
   const handleCheckout = async () => {
     if (!selectedVariant) return;
-    await addToCart(selectedVariant.id, quantity);
-    checkout();
+    console.log("[CHECKOUT:product] Buy Now clicked — variant:", selectedVariant.id, "qty:", quantity);
+    const updatedCart = await addToCart(selectedVariant.id, quantity);
+    // Pass the URL directly from the freshly-returned cart to avoid reading
+    // stale React state (setCart is async, checkout() would see the old cart).
+    console.log("[CHECKOUT:product] addToCart resolved, checkoutUrl:", updatedCart.checkoutUrl);
+    checkout(updatedCart.checkoutUrl);
   };
 
   return (
