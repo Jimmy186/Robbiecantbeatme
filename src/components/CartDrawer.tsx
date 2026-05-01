@@ -8,6 +8,19 @@ import { formatPrice } from "@/lib/shopify";
 export default function CartDrawer() {
   const { cart, cartOpen, setCartOpen, updateLine, removeLine, checkout, loading } = useCart();
 
+  const handleCheckout = () => {
+    const url = cart?.checkoutUrl;
+    // eslint-disable-next-line no-console
+    console.log("[RCBM Debug] cart:", cart);
+    // eslint-disable-next-line no-console
+    console.log("[RCBM Debug] checkoutUrl:", url);
+    if (!url) {
+      alert("DEBUG: checkoutUrl is empty or cart is null.\nCart ID: " + (cart?.id ?? "null"));
+      return;
+    }
+    checkout();
+  };
+
   const lines = cart?.lines.edges.map((e) => e.node) ?? [];
   const total = cart?.estimatedCost.totalAmount;
 
@@ -122,12 +135,17 @@ export default function CartDrawer() {
                   </span>
                 </div>
                 <button
-                  onClick={checkout}
+                  onClick={handleCheckout}
                   disabled={loading}
                   className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-zinc-200 transition-colors text-sm tracking-widest uppercase disabled:opacity-50"
                 >
                   Checkout
                 </button>
+                {cart?.checkoutUrl && (
+                  <p className="text-zinc-600 text-[10px] text-center break-all font-mono">
+                    {cart.checkoutUrl}
+                  </p>
+                )}
                 <p className="text-zinc-500 text-xs text-center">
                   Secure checkout via Shopify
                 </p>
