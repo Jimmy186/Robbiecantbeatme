@@ -1,7 +1,7 @@
 const domain = process.env.NEXT_PUBLIC_SHOPIFY_STORE_DOMAIN!;
 const storefrontAccessToken = process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN!;
 
-const endpoint = `https://${domain}/api/2024-01/graphql.json`;
+const endpoint = `https://${domain}/api/2025-04/graphql.json`;
 
 async function shopifyFetch<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
   const res = await fetch(endpoint, {
