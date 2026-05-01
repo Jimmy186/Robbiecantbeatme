@@ -122,7 +122,7 @@ export default function CartDrawer() {
                   </span>
                 </div>
                 <button
-                  onClick={checkout}
+                  onClick={() => checkout()}
                   disabled={loading}
                   className="w-full bg-white text-black font-bold py-4 rounded-xl hover:bg-zinc-200 transition-colors text-sm tracking-widest uppercase disabled:opacity-50"
                 >
