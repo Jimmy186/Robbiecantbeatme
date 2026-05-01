@@ -91,12 +91,11 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   const checkout = () => {
     if (cart?.checkoutUrl) {
       // Force checkout to go directly to the myshopify domain to avoid
-      // redirect loops caused by robbiecantbeatme.com being set as a
-      // custom domain in Shopify admin.
-      const url = cart.checkoutUrl.replace(
-        "robbiecantbeatme.com",
-        "x7x1ww-y8.myshopify.com"
-      );
+      // redirect loops caused by robbiecantbeatme.com DNS pointing to Vercel
+      // instead of Shopify.
+      const url = cart.checkoutUrl
+        .replace("www.robbiecantbeatme.com", "x7x1ww-y8.myshopify.com")
+        .replace("robbiecantbeatme.com", "x7x1ww-y8.myshopify.com");
       window.location.href = url;
     }
   };
